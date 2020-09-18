@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { server } from 'typescript';
 import { ServicesService } from './services.service';
 import { FormControl, NgForm } from '@angular/forms';
@@ -12,7 +12,8 @@ import { FormControl, NgForm } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
 
-  cityName: any;
+  data: any;
+  
   city: any[];
   constructor(public service: ServicesService) { }
 
@@ -32,11 +33,37 @@ export class AppComponent implements OnInit {
   }
 
   OnSubmit(form: NgForm) {
-    this.cityName = form.value.name;
-    this.service.getName(this.cityName).subscribe((res) => {
+
+    
+    console.log( form.value.district);
+    if (form.value.name!=""){
+      this.data = form.value.name;
+      this.service.getName(this.data).subscribe((res) => {
+        this.city = res.data;
+        console.log(this.city);
+      });
+    }else if(form.value.countyCode!=""&&form.value.name==""&&form.value.district==""){
+      this.data = form.value.countyCode;
+    this.service.getCountryCode(this.data).subscribe((res) => {
       this.city = res.data;
       console.log(this.city);
     });
+    }else{
+      this.data = form.value.district;
+    this.service.getDistrict(this.data).subscribe((res) => {
+      this.city = res.data;
+      console.log(this.city);
+    });
+    }
+
+    
+
+      /* this.data = form.value.name;
+      this.service.getName(this.data).subscribe((res) => {
+        this.city = res.data;
+        console.log(this.city);
+      });  */   
+
   }
 
   title = 'api-app';

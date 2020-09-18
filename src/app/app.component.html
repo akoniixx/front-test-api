@@ -2,14 +2,19 @@
     <form class="form" #myForm="ngForm" (ngSubmit)="OnSubmit(myForm)">
         <div class="row mt-2">
             <div class="col-5">
-                <input type="text" class="form-control" placeholder="Name" name="name"
+                <input type="text" class="form-control" placeholder="Name" 
+                name="name"
                 ngModel >
             </div>
             <div class="col-3">
-                <input type="text" class="form-control" placeholder="Country Code">
+                <input type="text" class="form-control" placeholder="Country Code" 
+                name="countyCode"
+                ngModel>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" placeholder="District">
+                <input type="text" class="form-control" placeholder="District"
+                name="district"
+                ngModel>
             </div>
         </div>
         <div class="row mt-2">

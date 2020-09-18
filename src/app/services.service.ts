@@ -29,8 +29,12 @@ export class ServicesService {
     return this.http.get(url,httpOptions).pipe();
   }
 
-  getDistrict(countryCode):Observable<any>{
+  getCountryCode(countryCode):Observable<any>{
     const url = 'http://localhost:8081/country/'+countryCode;
+    return this.http.get(url,httpOptions).pipe();
+  }
+  getDistrict(district):Observable<any>{
+    const url = 'http://localhost:8081/district/'+district;
     return this.http.get(url,httpOptions).pipe();
   }
 }
