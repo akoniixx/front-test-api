@@ -1,8 +1,9 @@
 <div class="container my-4">
-    <div class="form">
+    <form class="form" #myForm="ngForm" (ngSubmit)="OnSubmit(myForm)">
         <div class="row mt-2">
             <div class="col-5">
-                <input type="text" class="form-control" placeholder="Name">
+                <input type="text" class="form-control" placeholder="Name" name="name"
+                ngModel >
             </div>
             <div class="col-3">
                 <input type="text" class="form-control" placeholder="Country Code">
@@ -22,21 +23,32 @@
         </div>
         <div class="row">
             <div class="col">
+                
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <div class="container">
+    <li class="list-group-item active">Get json string data from APi </li>
+    <table style="width:100%">
+        <tr>
+            <th>Name</th>
+            <th>Country Code</th> 
+            <th>District</th>
+          </tr>
+        <tr *ngFor="let result of city">
+          <th  > {{ result.name }}</th>
+          <th > {{ result.countryCode }}</th> 
+          <th > {{ result.district }}</th>
+        </tr>
+      </table>
+    
 
-    <p>This is result</p>
-    <ul class="list-group">
-        <li class="list-group-item active">Get json string data from APi </li>
-        <li class="list-group-item" *ngFor="let result of results">
-          {{ data }}
-        </li>
-      </ul>
+    
+           
+       
 </div>
 
 <!-- <router-outlet></router-outlet> -->
